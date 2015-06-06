@@ -15,5 +15,9 @@ public class LampBlock extends Block {
 		setCreativeTab(CreativeTabs.tabBlock); 
 		setBlockTextureName(BetterLight.MODID + ":" + unlocalizedName); 
 	}
+	
+	public int getLightValue() {
+		return 15; 
+	}
 
 }
