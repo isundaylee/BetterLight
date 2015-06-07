@@ -1,5 +1,7 @@
 package betterlight.client;
 
+import betterlight.common.LampBlock;
+import betterlight.utils.Color;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -56,6 +58,8 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		LampBlock lampBlock = (LampBlock) block; 
+		Color lampColor = lampBlock.getColor(); 
 		Tessellator tessellator = Tessellator.instance;
 		IIcon c = block.getIcon(0, 0); 
 		
@@ -67,6 +71,7 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler {
 		tessellator.addTranslation(x, y, z);
 		
 		tessellator.setColorOpaque_F(0, 0, 0.5f);
+		tessellator.setColorOpaque(lampColor.getRed(), lampColor.getGreen(), lampColor.getBlue());
 		
 		for (int i=0; i<quads.length; i++) {
 			tessellator.addVertexWithUV(quads[i][0][0], quads[i][0][1], quads[i][0][2], u, V);
@@ -82,13 +87,11 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		// TODO Auto-generated method stub
-		return false;
+		return true; 
 	}
 
 	@Override
 	public int getRenderId() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

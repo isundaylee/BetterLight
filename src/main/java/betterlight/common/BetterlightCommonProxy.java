@@ -12,9 +12,9 @@ public class BetterlightCommonProxy {
     public static Block lampBlock; 
     
     public void preinit(FMLPreInitializationEvent event) {
-    	lampBlock = new LampBlock(); 
+    	GameRegistry.registerBlock(new LampBlock(), "lampBlock"); 
     	
-    	GameRegistry.registerBlock(lampBlock, "lampBlock"); 
+    	GameRegistry.registerTileEntity(LampTileEntity.class, "lampTileEntity");
     }
     
     public void init(FMLInitializationEvent event) {
